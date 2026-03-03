@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatter-LiveChat - İndirme Arşivi</title>
+    <title>Chatter-LiveChat v1.0.0 - İndirme Sayfası</title>
     <style>
         * {
             margin: 0;
@@ -70,7 +70,7 @@
 
         /* Ana İçerik */
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 3rem auto;
             padding: 0 2rem;
             flex: 1;
@@ -85,26 +85,14 @@
             color: #B42828;
         }
 
-        .subtitle {
-            color: #AAAAAA;
-            margin-bottom: 3rem;
-            font-size: 1.2rem;
-        }
-
-        /* Sürüm Kartı (Tek Sürüm) */
         .version-card {
             background: rgba(30, 30, 42, 0.5);
             border-radius: 15px;
             padding: 3rem;
             border: 2px solid #B42828;
             backdrop-filter: blur(10px);
-            margin-bottom: 3rem;
+            margin-top: 2rem;
             text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .version-card:hover {
-            transform: translateY(-5px);
         }
 
         .version-title {
@@ -151,7 +139,6 @@
             content: "✅";
             position: absolute;
             left: -5px;
-            color: #B42828;
         }
 
         .download-link {
@@ -173,7 +160,12 @@
             color: #B42828;
         }
 
-        /* Footer */
+        .file-info {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         footer {
             background: #1E1E2A;
             padding: 2rem;
@@ -184,7 +176,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <div class="header">
         <div class="header-container">
             <div class="logo">
@@ -192,17 +183,14 @@
                 <span class="logo-text">Chatter-LiveChat</span>
             </div>
             <div class="back-link">
-                <a href="/">← Ana Sayfaya Dön</a>
+                <a href="/Chatter-LiveChat-PC-Sitesi/">← Ana Sayfaya Dön</a>
             </div>
         </div>
     </div>
 
-    <!-- Ana İçerik -->
     <div class="container">
-        <h1>İndirme <span>Arşivi</span></h1>
-        <div class="subtitle">Chatter-LiveChat'in tüm sürümlerini buradan indirebilirsiniz.</div>
-
-        <!-- Sürüm 1.0.0 (Tek Sürüm) -->
+        <h1>İndirme <span>Sayfası</span></h1>
+        
         <div class="version-card">
             <div class="version-title">v1.0.0</div>
             <div class="version-date">28 Şubat 2026</div>
@@ -223,20 +211,15 @@
                 </ul>
             </div>
             
-            <a href="Chatter-LiveChat-PC-EXELİ.zip" class="download-link">
-                ⬇️ İndir (63.3 MB)
+            <a href="/Chatter-LiveChat-PC-Sitesi/1.0.0.zip" class="download-link">
+                ⬇️ İndir (63 MB)
             </a>
-        </div>
-
-        <!-- Gelecek Sürümler İçin Yer Tutucu (Opsiyonel) -->
-        <div style="text-align: center; margin-top: 2rem; color: #666;">
-            <p>🔜 Yeni sürümler çıktıkça burada listelenecektir.</p>
+            <div class="file-info">Dosya: Chatter-LiveChat-PC-EXELİ.zip</div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>© 2026 tda_45 - Tüm hakları saklıdır.(Tabi Açık Kaynak Dışında)</p>
+        <p>© 2026 Chatter-LiveChat - Tüm hakları saklıdır.</p>
     </footer>
 </body>
 </html>
