@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatter-LiveChat - İndirme Arşivi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #14141E 0%, #1E1E2A 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(30, 30, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #B42828;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #B42828;
+        }
+
+        .back-link a {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #B42828;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .back-link a:hover {
+            background: #B42828;
+        }
+
+        /* Ana İçerik */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 span {
+            color: #B42828;
+        }
+
+        .subtitle {
+            color: #AAAAAA;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+
+        /* Sürüm Kartı (Tek Sürüm) */
+        .version-card {
+            background: rgba(30, 30, 42, 0.5);
+            border-radius: 15px;
+            padding: 3rem;
+            border: 2px solid #B42828;
+            backdrop-filter: blur(10px);
+            margin-bottom: 3rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .version-title {
+            font-size: 3rem;
+            color: #B42828;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .version-date {
+            color: #AAAAAA;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .version-changes {
+            text-align: left;
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .version-changes h3 {
+            color: #B42828;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .version-changes ul {
+            list-style: none;
+        }
+
+        .version-changes li {
+            margin: 0.8rem 0;
+            color: #DDDDDD;
+            font-size: 1.1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .version-changes li::before {
+            content: "✅";
+            position: absolute;
+            left: -5px;
+            color: #B42828;
+        }
+
+        .download-link {
+            display: inline-block;
+            background: #B42828;
+            color: white;
+            padding: 1.2rem 4rem;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: 2px solid #B42828;
+        }
+
+        .download-link:hover {
+            background: transparent;
+            color: #B42828;
+        }
+
+        /* Footer */
+        footer {
+            background: #1E1E2A;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">💬</span>
+                <span class="logo-text">Chatter-LiveChat</span>
+            </div>
+            <div class="back-link">
+                <a href="/">← Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana İçerik -->
+    <div class="container">
+        <h1>İndirme <span>Arşivi</span></h1>
+        <div class="subtitle">Chatter-LiveChat'in tüm sürümlerini buradan indirebilirsiniz.</div>
+
+        <!-- Sürüm 1.0.0 (Tek Sürüm) -->
+        <div class="version-card">
+            <div class="version-title">v1.0.0</div>
+            <div class="version-date">28 Şubat 2026</div>
+            
+            <div class="version-changes">
+                <h3>📋 Sürüm Notları</h3>
+                <ul>
+                    <li>Gerçek zamanlı mesajlaşma</li>
+                    <li>Kullanıcı adı kontrolü</li>
+                    <li>Küfür filtresi</li>
+                    <li>Aktif kullanıcı listesi</li>
+                    <li>Yazıyor bildirimi (✏️)</li>
+                    <li>İstatistikler (/stats)</li>
+                    <li>Giriş/Çıkış mesajları</li>
+                    <li>Gece kırmızı tema</li>
+                    <li>Tam ekran modu</li>
+                    <li>🎉 İlk kararlı sürüm</li>
+                </ul>
+            </div>
+            
+            <a href="Chatter-LiveChat-PC-EXELİ.zip" class="download-link">
+                ⬇️ İndir (63.3 MB)
+            </a>
+        </div>
+
+        <!-- Gelecek Sürümler İçin Yer Tutucu (Opsiyonel) -->
+        <div style="text-align: center; margin-top: 2rem; color: #666;">
+            <p>🔜 Yeni sürümler çıktıkça burada listelenecektir.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 tda_45 - Tüm hakları saklıdır.(Tabi Açık Kaynak Dışında)</p>
+    </footer>
+</body>
+</html>

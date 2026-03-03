@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatter-LiveChat PC Sİtesi</title>
+    <title>Chatter-LiveChat PC</title>
     <style>
         * {
             margin: 0;
@@ -638,27 +638,6 @@
             height: 300px;
         }
 
-        /* Download Stats */
-        .download-stats {
-            text-align: center;
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(180, 40, 40, 0.1);
-            border-radius: 5px;
-        }
-        
-        .download-count {
-            font-size: 1.2rem;
-            color: #B42828;
-            font-weight: bold;
-        }
-        
-        .update-info {
-            font-size: 0.8rem;
-            color: #AAAAAA;
-            margin-left: 0.5rem;
-        }
-
         /* Scroll Top Button */
         .scroll-top {
             position: fixed;
@@ -822,7 +801,7 @@
                     <iframe src="https://ghbtns.com/github-btn.html?user=tda45&repo=Chatter-LiveChat-PC&type=fork&count=true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
                 </div>
             </div>
-            <a href="#download" class="download-btn">İndir v1.0</a>
+            <a href="/Sürümler/" class="download-btn">İndir v1.0.0</a>
         </div>
     </nav>
 
@@ -831,7 +810,7 @@
         <h1>Gerçek Zamanlı <span>Sohbet</span></h1>
         <p>Chatter-LiveChat ile arkadaşlarınla anında iletişime geç. Windows için geliştirilmiş, modern ve hızlı sohbet uygulaması.</p>
         <div class="hero-buttons">
-            <a href="#download" class="primary-btn">Hemen İndir</a>
+            <a href="/Sürümler/" class="primary-btn">Hemen İndir</a>
             <a href="#features" class="secondary-btn">Özellikleri Keşfet</a>
         </div>
 
@@ -921,19 +900,18 @@
     <section class="changelog">
         <h3>Sürüm Geçmişi</h3>
         <div class="version">
-            <h4>v1.0.1 <span class="date">1 Mar 2026</span></h4>
+            <h4>v1.0.0 <span class="date">28 Şubat 2026</span></h4>
             <ul>
-                <li>✅ Yazıyor bildirimi eklendi</li>
-                <li>✅ /stats komutu eklendi</li>
-                <li>🐛 Küfür filtresi düzeltildi</li>
-            </ul>
-        </div>
-        <div class="version">
-            <h4>v1.0.0 <span class="date">28 Şub 2026</span></h4>
-            <ul>
-                <li>🎉 İlk sürüm</li>
-                <li>✅ Temel sohbet özellikleri</li>
+                <li>✅ Gerçek zamanlı mesajlaşma</li>
+                <li>✅ Kullanıcı adı kontrolü</li>
+                <li>✅ Küfür filtresi</li>
+                <li>✅ Aktif kullanıcı listesi</li>
+                <li>✅ Yazıyor bildirimi (✏️)</li>
+                <li>✅ İstatistikler (/stats)</li>
                 <li>✅ Giriş/Çıkış mesajları</li>
+                <li>✅ Gece kırmızı tema</li>
+                <li>✅ Tam ekran modu</li>
+                <li>🎉 İlk kararlı sürüm</li>
             </ul>
         </div>
     </section>
@@ -1011,22 +989,16 @@
     <section id="download" class="download">
         <div class="download-box">
             <div class="download-icon">📥</div>
-            <h2>Chatter-LiveChat v1.0.1</h2>
-            <div class="version-info">Son Güncelleme: 1 Mart 2026</div>
-            
-            <!-- Download Stats (Özellik 6) -->
-            <div class="download-stats">
-                <span class="download-count">📥 Toplam İndirme: <span id="totalDownloads">0</span></span>
-                <span class="update-info">(Gerçek zamanlı)</span>
-            </div>
+            <h2>Chatter-LiveChat v1.0.0</h2>
+            <div class="version-info">Son Güncelleme: 28 Şubat 2026</div>
             
             <div class="download-options">
-                <a href="Chatter-LiveChat-PC-EXELİ.zip" class="win-btn" id="downloadLink">
-                    <span>⬇️</span> Windows için İndir (EXE)
+                <a href="/Sürümler/" class="win-btn">
+                    <span>⬇️</span> İndirme Merkezine Git
                 </a>
             </div>
             <p style="margin-top: 2rem; color: #AAAAAA; font-size: 0.9rem;">
-                .NET 8.0 ile geliştirilmiştir. Hiçbir ek kurulum gerektirmez.
+                Tüm sürümleri ve arşivlenmiş dosyaları görmek için tıklayın.
             </p>
         </div>
     </section>
@@ -1047,7 +1019,7 @@
                 <h3>Hızlı Bağlantılar</h3>
                 <p><a href="#features" style="color: #AAAAAA; text-decoration: none;">Özellikler</a></p>
                 <p><a href="#screenshots" style="color: #AAAAAA; text-decoration: none;">Ekran Görüntüleri</a></p>
-                <p><a href="#download" style="color: #AAAAAA; text-decoration: none;">İndir</a></p>
+                <p><a href="/Sürümler/" style="color: #AAAAAA; text-decoration: none;">İndirme Arşivi</a></p>
             </div>
             <div class="footer-section">
                 <h3>Yasal</h3>
@@ -1058,13 +1030,12 @@
         <div class="footer-bottom">
             <p>Made with ❤️ by tda45</p>
         </div>
-        <!-- Last Update -->
         <div class="last-update">
             Son güncelleme: <span id="lastUpdate"></span>
         </div>
     </footer>
 
-    <!-- Scroll Top Button (Özellik 7) -->
+    <!-- Scroll Top Button -->
     <button id="scrollTop" class="scroll-top" title="Yukarı Çık">
         <span>⬆️</span>
     </button>
@@ -1116,53 +1087,7 @@
             }, 20);
         }
 
-        // Özellik 6: Download Counter
-        async function getGitHubStats() {
-            try {
-                const response = await fetch('https://api.github.com/repos/tda45/Chatter-LiveChat-PC/releases');
-                const releases = await response.json();
-                
-                let totalDownloads = 0;
-                for (const release of releases) {
-                    if (release.assets) {
-                        for (const asset of release.assets) {
-                            totalDownloads += asset.download_count || 0;
-                        }
-                    }
-                }
-                
-                if (totalDownloads === 0) {
-                    totalDownloads = parseInt(localStorage.getItem('totalDownloads') || '1547');
-                }
-                
-                document.getElementById('totalDownloads').textContent = totalDownloads.toLocaleString();
-                localStorage.setItem('totalDownloads', totalDownloads.toString());
-                
-                return totalDownloads;
-            } catch (error) {
-                console.error('GitHub API hatası:', error);
-                const saved = parseInt(localStorage.getItem('totalDownloads') || '1547');
-                document.getElementById('totalDownloads').textContent = saved.toLocaleString();
-                return saved;
-            }
-        }
-
-        async function handleDownload(e) {
-            e.preventDefault();
-            
-            let currentCount = parseInt(document.getElementById('totalDownloads').textContent.replace(/[.,]/g, ''));
-            currentCount++;
-            
-            document.getElementById('totalDownloads').textContent = currentCount.toLocaleString();
-            localStorage.setItem('totalDownloads', currentCount.toString());
-            
-            window.location.href = 'Chatter-LiveChat-PC-EXELİ.zip';
-        }
-
-        getGitHubStats();
-        document.getElementById('downloadLink').addEventListener('click', handleDownload);
-
-        // Özellik 7: Scroll Top Button
+        // Scroll Top Button
         const scrollBtn = document.getElementById('scrollTop');
         const scrollProgress = document.getElementById('scrollProgress');
 
