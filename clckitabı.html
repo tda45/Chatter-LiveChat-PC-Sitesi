@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sıfırdan Chatter-LiveChat Geliştirme Rehberi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-bottom: 3px solid #B42828;
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #B42828;
+        }
+
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #B42828;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .back-link a:hover {
+            background: #B42828;
+        }
+
+        /* Ana İçerik */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Kitap Başlığı */
+        .book-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 10px;
+            border: 1px solid #B42828;
+        }
+
+        .book-title h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-title h1 span {
+            color: #B42828;
+        }
+
+        .book-title p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* İçindekiler */
+        .toc {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid #B42828;
+        }
+
+        .toc h2 {
+            color: #B42828;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-item {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 3px solid #B42828;
+        }
+
+        .toc-item a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .toc-item a:hover {
+            color: #B42828;
+        }
+
+        .toc-item small {
+            color: #94a3b8;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* Bölümler */
+        .chapter {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid #B42828;
+        }
+
+        .chapter h2 {
+            color: #B42828;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #B42828;
+        }
+
+        .chapter h3 {
+            color: #B42828;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .chapter h4 {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .chapter p {
+            margin: 1rem 0;
+            color: #cbd5e1;
+        }
+
+        /* Kod Blokları */
+        pre {
+            background: #0f172a;
+            padding: 1.5rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #B42828;
+        }
+
+        code {
+            font-family: 'Consolas', monospace;
+            color: #B42828;
+        }
+
+        .code-block {
+            position: relative;
+        }
+
+        .code-block pre {
+            background: #0f172a;
+        }
+
+        /* Tablolar */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th {
+            background: #B42828;
+            color: white;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.5rem;
+            border: 1px solid #B42828;
+        }
+
+        /* Notlar */
+        .note {
+            background: rgba(180, 40, 40, 0.1);
+            border-left: 4px solid #B42828;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .note strong {
+            color: #B42828;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid #B42828;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .book-title h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">Chatter-LiveChat Geliştirme Rehberi</span>
+            </div>
+            <div class="back-link">
+                <a href="/Chatter-LiveChat-PC-Sitesi/">← Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Kitap Başlığı -->
+        <div class="book-title">
+            <h1>Sıfırdan <span>Chatter-LiveChat</span></h1>
+            <p>Windows Forms, .NET MAUI, Supabase ve GitHub Pages ile tam kapsamlı bir sohbet uygulaması geliştirme rehberi</p>
+        </div>
+
+        <!-- İçindekiler -->
+        <div class="toc">
+            <h2>📖 İçindekiler</h2>
+            <div class="toc-grid">
+                <div class="toc-item">
+                    <a href="#bolum1">Bölüm 1: Proje Planlaması ve Mimari</a>
+                    <small>Vizyon, teknoloji seçimi, veritabanı</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum2">Bölüm 2: Windows Forms ile Masaüstü</a>
+                    <small>C#, .NET 8.0, Windows Forms</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum3">Bölüm 3: .NET MAUI ile Mobil Uygulama</a>
+                    <small>Android/iOS, XAML, MVVM</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum4">Bölüm 4: Gerçek Zamanlı Mesajlaşma</a>
+                    <small>Supabase Realtime, Polling</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum5">Bölüm 5: Web Sitesi ve GitHub Pages</a>
+                    <small>HTML/CSS, Yayınlama</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum6">Bölüm 6: Hata Ayıklama ve Optimizasyon</a>
+                    <small>Çözümler, performans</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum7">Bölüm 7: Yayınlama ve Paketleme</a>
+                    <small>EXE, APK, Releases</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#bolum8">Bölüm 8: Topluluk ve Katkı</a>
+                    <small>GitHub, Pull Request, Lisans</small>
+                </div>
+                <div class="toc-item">
+                    <a href="#ekler">Ekler: Kodlar ve Şemalar</a>
+                    <small>Tüm dosyalar, SQL şemaları</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bölüm 1 -->
+        <div id="bolum1" class="chapter">
+            <h2>📌 Bölüm 1: Proje Planlaması ve Mimari</h2>
+            
+            <h3>1.1 Proje Vizyonu</h3>
+            <p>Chatter-LiveChat, kullanıcıların anlık mesajlaşmasını sağlayan, küfür filtresi ve kullanıcı takibi gibi özellikleri olan bir sohbet uygulamasıdır. Temel hedefler:</p>
+            <ul style="margin-left: 2rem; color: #cbd5e1;">
+                <li>✅ Gerçek zamanlı mesajlaşma</li>
+                <li>✅ Kullanıcı adı kontrolü (çakışma önleme)</li>
+                <li>✅ Küfür filtresi</li>
+                <li>✅ Aktif kullanıcı listesi</li>
+                <li>✅ Çapraz platform destek (Windows, Android, iOS)</li>
+            </ul>
+
+            <h3>1.2 Teknoloji Seçimi</h3>
+            <table>
+                <tr>
+                    <th>Bileşen</th>
+                    <th>Teknoloji</th>
+                    <th>Sebep</th>
+                </tr>
+                <tr>
+                    <td>Masaüstü</td>
+                    <td>C# Windows Forms (.NET 8.0)</td>
+                    <td>Hızlı geliştirme, native performans</td>
+                </tr>
+                <tr>
+                    <td>Mobil</td>
+                    <td>.NET MAUI</td>
+                    <td>Tek kod tabanı ile Android/iOS</td>
+                </tr>
+                <tr>
+                    <td>Backend</td>
+                    <td>Supabase</td>
+                    <td>PostgreSQL + Realtime, ücretsiz</td>
+                </tr>
+                <tr>
+                    <td>Web Sitesi</td>
+                    <td>GitHub Pages</td>
+                    <td>Ücretsiz hosting, statik site</td>
+                </tr>
+            </table>
+
+            <h3>1.3 Veritabanı Tasarımı</h3>
+            <div class="code-block">
+                <pre><code>-- Supabase SQL Tabloları
+CREATE TABLE messages (
+    id BIGSERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    username TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE active_users (
+    username TEXT PRIMARY KEY,
+    last_seen TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 10 saniye sonra aktif kullanıcıları temizle
+CREATE OR REPLACE FUNCTION cleanup_old_users()
+RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM active_users 
+    WHERE last_seen < NOW() - INTERVAL '10 seconds';
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger'ı aktif et
+CREATE TRIGGER trigger_cleanup_users
+    AFTER INSERT OR UPDATE ON active_users
+    EXECUTE FUNCTION cleanup_old_users();</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>📝 Linux From Scratch Notu:</strong> Tıpkı LFS'te her şeyi sıfırdan inşa ettiğimiz gibi, burada da veritabanımızı sıfırdan tasarlıyoruz. Her tablo, her trigger, her fonksiyon elimizle yazılıyor.
+            </div>
+        </div>
+
+        <!-- Bölüm 2 -->
+        <div id="bolum2" class="chapter">
+            <h2>💻 Bölüm 2: Windows Forms ile Masaüstü Uygulaması</h2>
+            
+            <h3>2.1 Proje Oluşturma</h3>
+            <div class="code-block">
+                <pre><code># Yeni Windows Forms projesi oluştur
+dotnet new winforms -n ChatterLiveChat -f net8.0
+
+# Proje klasörüne gir
+cd ChatterLiveChat
+
+# Gerekli paketleri yükle
+dotnet add package Newtonsoft.Json</code></pre>
+            </div>
+
+            <h3>2.2 Supabase HTTP Servisi</h3>
+            <div class="code-block">
+                <pre><code>// SupabaseHttpService.cs
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+public class SupabaseHttpService
+{
+    private readonly HttpClient _httpClient;
+    private readonly string _supabaseUrl = "https://zsspdxeovynnzrjalvvy.supabase.co";
+    private readonly string _supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
+    
+    public SupabaseHttpService()
+    {
+        _httpClient = new HttpClient();
+        _httpClient.DefaultRequestHeaders.Add("apikey", _supabaseKey);
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_supabaseKey}");
+    }
+    
+    public async Task<JArray> GetAsync(string endpoint)
+    {
+        var response = await _httpClient.GetAsync($"{_supabaseUrl}/rest/v1/{endpoint}");
+        var content = await response.Content.ReadAsStringAsync();
+        return JArray.Parse(content);
+    }
+    
+    public async Task<JArray> PostWithReturnAsync(string endpoint, object data)
+    {
+        var json = JsonConvert.SerializeObject(data);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, $"{_supabaseUrl}/rest/v1/{endpoint}")
+        {
+            Content = content
+        };
+        request.Headers.Add("Prefer", "return=representation");
+        
+        var response = await _httpClient.SendAsync(request);
+        var responseContent = await response.Content.ReadAsStringAsync();
+        return JArray.Parse(responseContent);
+    }
+}</code></pre>
+            </div>
+
+            <h3>2.3 ChatService (Ana İş Mantığı)</h3>
+            <div class="code-block">
+                <pre><code>// ChatService.cs
+public class ChatService
+{
+    private readonly SupabaseHttpService _httpService = new();
+    private readonly List<string> _badWords = new()
+    {
+        "küfür", "kufur", "piç", "pic", "amk", "aq"
+    };
+    
+    private string _currentUser = "";
+    private DateTime _joinTime;
+    
+    public ObservableCollection<Message> Messages { get; } = new();
+    public ObservableCollection<string> ActiveUsers { get; } = new();
+    
+    public async Task<bool> LoginAsync(string username)
+    {
+        // 10 saniyeden eski kullanıcıları temizle
+        var tenSecondsAgo = DateTime.UtcNow.AddSeconds(-10);
+        await _httpService.DeleteAsync($"active_users?last_seen=lt.{tenSecondsAgo:yyyy-MM-dd HH:mm:ss}");
+        
+        // Kullanıcı adı kullanımda mı?
+        var existing = await _httpService.GetAsync($"active_users?username=eq.{username}");
+        if (existing.HasValues) return false;
+        
+        _currentUser = username;
+        _joinTime = DateTime.UtcNow;
+        
+        // Giriş mesajı gönder
+        await _httpService.PostAsync("messages", new
+        {
+            content = $"🚪 {username} katıldı!",
+            username = "SİSTEM",
+            created_at = DateTime.UtcNow
+        });
+        
+        return true;
+    }
+}</code></pre>
+            </div>
+
+            <h3>2.4 Giriş Ekranı (MainForm.cs)</h3>
+            <div class="code-block">
+                <pre><code>public partial class MainForm : Form
+{
+    private TextBox txtUsername;
+    private Button btnLogin;
+    
+    public MainForm()
+    {
+        InitializeComponent();
+        SetupUI();
+    }
+    
+    private void SetupUI()
+    {
+        this.Text = "Chatter-LiveChat";
+        this.Size = new Size(400, 300);
+        this.StartPosition = FormStartPosition.CenterScreen;
+        this.BackColor = Color.FromArgb(20, 20, 30);
+        
+        txtUsername = new TextBox
+        {
+            Location = new Point(100, 100),
+            Size = new Size(200, 30)
+        };
+        
+        btnLogin = new Button
+        {
+            Text = "Giriş Yap",
+            Location = new Point(100, 150),
+            Size = new Size(200, 40),
+            BackColor = Color.FromArgb(180, 40, 40)
+        };
+        btnLogin.Click += OnLoginClick;
+        
+        this.Controls.Add(txtUsername);
+        this.Controls.Add(btnLogin);
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Bölüm 3 -->
+        <div id="bolum3" class="chapter">
+            <h2>📱 Bölüm 3: .NET MAUI ile Mobil Uygulama</h2>
+            
+            <h3>3.1 MAUI Projesi Oluşturma</h3>
+            <div class="code-block">
+                <pre><code># Yeni MAUI projesi oluştur
+dotnet new maui -n "Chatter-LiveChat Mobile" -f net9.0
+
+# Proje klasörüne gir
+cd "Chatter-LiveChat Mobile"
+
+# Gerekli paketleri yükle
+dotnet add package Newtonsoft.Json</code></pre>
+            </div>
+
+            <h3>3.2 XAML ile Arayüz Tasarımı</h3>
+            <div class="code-block">
+                <pre><code>&lt;!-- MainPage.xaml --&gt;
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chatter_LiveChat_Mobile.MainPage"
+             BackgroundColor="#14141E"&gt;
+    
+    &lt;VerticalStackLayout Spacing="20" 
+                         VerticalOptions="Center"
+                         Padding="30"&gt;
+        
+        &lt;Label Text="Chatter-LiveChat"
+               FontSize="32"
+               FontAttributes="Bold"
+               TextColor="#B42828"
+               HorizontalOptions="Center"/&gt;
+        
+        &lt;Entry x:Name="UsernameEntry"
+               Placeholder="Kullanıcı Adı"
+               PlaceholderColor="Gray"
+               BackgroundColor="#1E1E2A"
+               TextColor="White"
+               FontSize="16"/&gt;
+        
+        &lt;Button Text="Giriş Yap"
+                BackgroundColor="#B42828"
+                TextColor="White"
+                FontSize="18"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                Clicked="OnLoginClicked"/&gt;
+        
+    &lt;/VerticalStackLayout&gt;
+&lt;/ContentPage&gt;</code></pre>
+            </div>
+
+            <h3>3.3 Platformlar Arası Kod Paylaşımı</h3>
+            <p>Aynı C# kodunu hem Android hem iOS için kullanıyoruz. MAUI, platform bağımlı kodları otomatik olarak yönetir.</p>
+            
+            <div class="note">
+                <strong>📝 Önemli:</strong> MAUI ile geliştirirken, farklı platformlara özel ayarlar yapmak için Platforms klasörünü kullanıyoruz. Örneğin, Android izinleri için Platforms/Android/AndroidManifest.xml dosyasını düzenliyoruz.
+            </div>
+        </div>
+
+        <!-- Bölüm 4 -->
+        <div id="bolum4" class="chapter">
+            <h2>⚡ Bölüm 4: Gerçek Zamanlı Mesajlaşma</h2>
+            
+            <h3>4.1 Polling ile Mesaj Takibi</h3>
+            <div class="code-block">
+                <pre><code>public void StartPolling()
+{
+    Task.Run(async () =>
+    {
+        while (_isPolling)
+        {
+            await Task.Delay(2000); // 2 saniyede bir kontrol
+            
+            // Yeni mesajları yükle
+            await LoadMessagesAsync();
+            
+            // Aktif kullanıcıları güncelle
+            await LoadActiveUsersAsync();
+            
+            // LastSeen'i güncelle
+            await UpdateLastSeenAsync();
+        }
+    });
+}
+
+public async Task LoadMessagesAsync()
+{
+    var response = await _httpService.GetAsync(
+        $"messages?select=*&created_at=gt.{_joinTime:yyyy-MM-dd HH:mm:ss}&order=created_at.asc");
+    
+    MainThread.BeginInvokeOnMainThread(() =>
+    {
+        Messages.Clear();
+        foreach (var item in response)
+        {
+            Messages.Add(new Message
+            {
+                Id = item["id"]?.Value&lt;int&gt;() ?? 0,
+                Content = item["content"]?.Value&lt;string&gt;() ?? "",
+                Username = item["username"]?.Value&lt;string&gt;() ?? "",
+                CreatedAt = DateTime.Parse(item["created_at"]?.Value&lt;string&gt;() ?? DateTime.UtcNow.ToString()),
+                IsOwnMessage = item["username"]?.Value&lt;string&gt;() == _currentUser
+            });
+        }
+    });
+}</code></pre>
+            </div>
+
+            <h3>4.2 Küfür Filtresi</h3>
+            <div class="code-block">
+                <pre><code>private readonly List<string> _badWords = new()
+{
+    "küfür", "kufur", "piç", "pic", "amk", "aq", "sik", "siktir",
+    "ananı", "babanı", "gerizekalı", "salak", "aptal", "ibne",
+    "orospu", "çocuğu", "cocugu", "yarrak", "amcık", "amcik"
+};
+
+public bool ContainsBadWord(string text)
+{
+    var lowerText = text.ToLower();
+    return _badWords.Any(w => lowerText.Contains(w.ToLower()));
+}</code></pre>
+            </div>
+
+            <h3>4.3 /stats Komutu</h3>
+            <div class="code-block">
+                <pre><code>private async Task ShowStatsAsync()
+{
+    var response = await _httpService.GetAsync(
+        $"messages?select=username&created_at=gt.{_joinTime:yyyy-MM-dd HH:mm:ss}");
+    
+    var messages = response.Select(x => x["username"]?.Value&lt;string&gt;() ?? "").ToList();
+    
+    var total = messages.Count;
+    var myMessages = messages.Count(x => x == _currentUser);
+    
+    var topUsers = messages
+        .Where(x => x != "SİSTEM")
+        .GroupBy(x => x)
+        .Select(g => new { User = g.Key, Count = g.Count() })
+        .OrderByDescending(x => x.Count)
+        .Take(3)
+        .ToList();
+    
+    var stats = $"📊 İSTATİSTİKLER\nToplam: {total}\nSenin: {myMessages}\n\n🏆 En Çok:\n";
+    for (int i = 0; i < topUsers.Count; i++)
+        stats += $"{i+1}. {topUsers[i].User}: {topUsers[i].Count} mesaj\n";
+    
+    await _httpService.PostAsync("messages", new
+    {
+        content = stats,
+        username = "SİSTEM",
+        created_at = DateTime.UtcNow
+    });
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- Bölüm 5 -->
+        <div id="bolum5" class="chapter">
+            <h2>🌐 Bölüm 5: Web Sitesi ve GitHub Pages</h2>
+            
+            <h3>5.1 HTML ile Site Tasarımı</h3>
+            <div class="code-block">
+                <pre><code>&lt;!-- index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Chatter-LiveChat&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            background: linear-gradient(135deg, #14141E, #1E1E2A);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .download-box {
+            max-width: 600px;
+            margin: 100px auto;
+            background: #1E1E2A;
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid #B42828;
+            text-align: center;
+        }
+        .win-btn {
+            background: #B42828;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="download-box"&gt;
+        &lt;h1&gt;Chatter-LiveChat v1.0.0&lt;/h1&gt;
+        &lt;a href="1.0.0-surum.html" class="win-btn"&gt;⬇️ İndir&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <h3>5.2 GitHub Pages Yayınlama</h3>
+            <div class="code-block">
+                <pre><code># Git deposu oluştur
+git init
+git add .
+git commit -m "İlk yükleme"
+git branch -M main
+
+# GitHub'da repo oluşturduktan sonra
+git remote add origin https://github.com/tda45/Chatter-LiveChat-PC-Sitesi.git
+git push -u origin main
+
+# Jekyll'i devre dışı bırak (404 hatası alınırsa)
+touch .nojekyll
+git add .nojekyll
+git commit -m "Jekyll'i devre dışı bırak"
+git push</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>📝 GitHub Pages Notu:</strong> Eğer klasör yapınızda sorun yaşarsanız, tüm dosyaları ana dizine taşıyın ve .nojekyll dosyası ekleyin. Bu, GitHub Pages'in Jekyll ile derleme yapmasını engeller.
+            </div>
+        </div>
+
+        <!-- Bölüm 6 -->
+        <div id="bolum6" class="chapter">
+            <h2>🔧 Bölüm 6: Hata Ayıklama ve Optimizasyon</h2>
+            
+            <h3>6.1 Yaygın Hatalar ve Çözümleri</h3>
+            
+            <h4>Hata: "Cannot add extension with name 'kotlin'"</h4>
+            <div class="code-block">
+                <pre><code># Çözüm: build.gradle.kts dosyasını temizleyip yeniden oluşturun
+cd android
+rm build.gradle.kts
+# Yeni build.gradle.kts oluşturun</code></pre>
+            </div>
+            
+            <h4>Hata: "No space left on device"</h4>
+            <div class="code-block">
+                <pre><code># bin ve obj klasörlerini temizle
+rm -r -force bin
+rm -r -force obj</code></pre>
+            </div>
+            
+            <h4>Hata: "AAPT2 error" (Android derleme hatası)</h4>
+            <div class="code-block">
+                <pre><code># Çözüm: Android SDK'yı güncelle ve önbelleği temizle
+# Visual Studio'da: Build -> Clean Solution
+# Sonra: Build -> Rebuild Solution</code></pre>
+            </div>
+            
+            <h3>6.2 Performans İpuçları</h3>
+            <ul style="margin-left: 2rem; color: #cbd5e1;">
+                <li>✅ Polling interval'ını 2000ms'de tutun (çok sık kontrol etmeyin)</li>
+                <li>✅ Mesajları ObservableCollection ile yönetin</li>
+                <li>✅ Gereksiz binding'lerden kaçının</li>
+                <li>✅ Android manifest'te internet iznini unutmayın</li>
+                <li>✅ Release modunda derlerken linker ayarlarını kontrol edin</li>
+            </ul>
+        </div>
+
+        <!-- Bölüm 7 -->
+        <div id="bolum7" class="chapter">
+            <h2>📦 Bölüm 7: Yayınlama ve Paketleme</h2>
+            
+            <h3>7.1 Windows için Tek EXE</h3>
+            <div class="code-block">
+                <pre><code>dotnet publish -c Release -r win-x64 --self-contained true \
+  -p:PublishSingleFile=true \
+  -p:PublishTrimmed=true \
+  -p:EnableCompressionInSingleFile=true \
+  -o "C:\Users\hp\Desktop\Chatter-LiveChat-TekEXE"</code></pre>
+            </div>
+            
+            <h3>7.2 Android APK Oluşturma</h3>
+            <div class="code-block">
+                <pre><code># Visual Studio'da:
+# 1. Çözüm yapılandırmasını Release yapın
+# 2. Hedef platform olarak Android seçin
+# 3. Build -> Publish seçeneği ile APK oluşturun
+
+# Veya komut satırından:
+dotnet publish -f net9.0-android -c Release</code></pre>
+            </div>
+            
+            <h3>7.3 GitHub Releases</h3>
+            <div class="code-block">
+                <pre><code># GitHub'da yeni release oluştur
+# Tag: v1.0.0
+# Title: Chatter-LiveChat v1.0.0
+# Description: İlk kararlı sürüm
+
+# APK ve EXE dosyalarını ekle
+# Publish release</code></pre>
+            </div>
+        </div>
+
+        <!-- Bölüm 8 -->
+        <div id="bolum8" class="chapter">
+            <h2>🤝 Bölüm 8: Topluluk ve Katkı</h2>
+            
+            <h3>8.1 Nasıl Katkıda Bulunulur?</h3>
+            <ol style="margin-left: 2rem; color: #cbd5e1;">
+                <li>GitHub'da repo'yu fork edin</li>
+                <li>Yeni bir branch oluşturun (git checkout -b yeni-ozellik)</li>
+                <li>Değişikliklerinizi yapın</li>
+                <li>Commit edin (git commit -am 'Yeni özellik eklendi')</li>
+                <li>Branch'inizi push edin (git push origin yeni-ozellik)</li>
+                <li>Pull request gönderin</li>
+            </ol>
+            
+            <h3>8.2 Kod Standartları</h3>
+            <ul style="margin-left: 2rem; color: #cbd5e1;">
+                <li>✅ C# için Microsoft standartlarını takip edin</li>
+                <li>✅ Yorum satırları ekleyin (/// ile XML dokümantasyon)</li>
+                <li>✅ Anlamlı değişken isimleri kullanın</li>
+                <li>✅ Testleri yazın (en azından temel senaryolar için)</li>
+            </ul>
+            
+            <h3>8.3 Lisans</h3>
+            <div class="code-block">
+                <pre><code>MIT License
+
+Copyright (c) 2026 tda45
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...</code></pre>
+            </div>
+            
+            <div class="note">
+                <strong>📝 Linux From Scratch Felsefesi:</strong> Tıpkı LFS'te olduğu gibi, bu proje de topluluk katkılarıyla büyüyor. Herkes kendi özelliğini ekleyebilir, hataları düzeltebilir ve dokümantasyona katkıda bulunabilir.
+            </div>
+        </div>
+
+        <!-- Ekler -->
+        <div id="ekler" class="chapter">
+            <h2>📎 Ekler: Kodlar ve Şemalar</h2>
+            
+            <h3>Ek A: Tüm Kod Dosyaları</h3>
+            <table>
+                <tr>
+                    <th>Dosya</th>
+                    <th>Açıklama</th>
+                </tr>
+                <tr>
+                    <td>SupabaseHttpService.cs</td>
+                    <td>Supabase REST API iletişimi</td>
+                </tr>
+                <tr>
+                    <td>ChatService.cs</td>
+                    <td>Ana iş mantığı (login, mesaj, logout)</td>
+                </tr>
+                <tr>
+                    <td>MainPage.xaml</td>
+                    <td>Giriş ekranı arayüzü (MAUI)</td>
+                </tr>
+                <tr>
+                    <td>MainPage.xaml.cs</td>
+                    <td>Giriş ekranı kodları</td>
+                </tr>
+                <tr>
+                    <td>ChatPage.xaml</td>
+                    <td>Sohbet ekranı arayüzü</td>
+                </tr>
+                <tr>
+                    <td>ChatPage.xaml.cs</td>
+                    <td>Sohbet ekranı kodları</td>
+                </tr>
+                <tr>
+                    <td>Message.cs</td>
+                    <td>Mesaj modeli</td>
+                </tr>
+                <tr>
+                    <td>ActiveUser.cs</td>
+                    <td>Aktif kullanıcı modeli</td>
+                </tr>
+            </table>
+            
+            <h3>Ek B: Supabase Şemaları</h3>
+            <div class="code-block">
+                <pre><code>-- messages tablosu
+CREATE TABLE messages (
+    id BIGSERIAL PRIMARY KEY,
+    content TEXT NOT NULL,
+    username TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- active_users tablosu
+CREATE TABLE active_users (
+    username TEXT PRIMARY KEY,
+    last_seen TIMESTAMPTZ DEFAULT NOW()
+);</code></pre>
+            </div>
+            
+            <h3>Ek C: Sık Kullanılan Komutlar</h3>
+            <div class="code-block">
+                <pre><code># Projeyi çalıştırma
+dotnet run
+
+# Android için build
+dotnet build -f net9.0-android
+
+# Windows için publish
+dotnet publish -c Release -r win-x64 --self-contained true
+
+# MAUI için temizlik
+dotnet clean
+rm -r -force bin
+rm -r -force obj
+
+# Git işlemleri
+git add .
+git commit -m "mesaj"
+git push</code></pre>
+            </div>
+            
+            <h3>Ek D: Visual Studio 2022 Kurulumu</h3>
+            <ol style="margin-left: 2rem; color: #cbd5e1;">
+                <li>.NET desktop development iş yükünü seçin</li>
+                <li>Mobile development with .NET (MAUI) iş yükünü seçin</li>
+                <li>GitHub extension'ı ekleyin (opsiyonel)</li>
+                <li>Kurulumu tamamlayın ve bilgisayarı yeniden başlatın</li>
+            </ol>
+        </div>
+
+        <!-- Son Söz -->
+        <div class="chapter" style="text-align: center;">
+            <h2>🎉 Sonsöz</h2>
+            <p style="font-size: 1.2rem;">Bu rehberde, sıfırdan başlayarak tam kapsamlı bir sohbet uygulaması geliştirdik. Windows Forms, .NET MAUI, Supabase ve GitHub Pages kullanarak:</p>
+            <ul style="list-style: none; margin: 2rem 0;">
+                <li>✅ Masaüstü uygulaması</li>
+                <li>✅ Mobil uygulama (Android/iOS)</li>
+                <li>✅ Gerçek zamanlı mesajlaşma</li>
+                <li>✅ Web sitesi ve indirme arşivi</li>
+            </ul>
+            <p style="color: #B42828; font-size: 1.3rem;">Tıpkı Linux From Scratch'te olduğu gibi, her satırı kendi ellerimizle yazdık!</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>📚 Sıfırdan Chatter-LiveChat Geliştirme Rehberi - tda45 © 2026</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Linux From Scratch ruhuyla hazırlanmıştır</p>
+    </footer>
+</body>
+</html>
