@@ -70,7 +70,7 @@
 
         /* Ana İçerik */
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 3rem auto;
             padding: 0 2rem;
             flex: 1;
@@ -92,7 +92,6 @@
             border: 2px solid #B42828;
             backdrop-filter: blur(10px);
             margin-top: 2rem;
-            text-align: center;
         }
 
         .version-title {
@@ -100,18 +99,81 @@
             color: #B42828;
             margin-bottom: 0.5rem;
             font-weight: bold;
+            text-align: center;
         }
 
         .version-date {
             color: #AAAAAA;
             font-size: 1.1rem;
             margin-bottom: 2rem;
+            text-align: center;
         }
 
+        /* İndirme Seçenekleri */
+        .download-options {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .download-card {
+            background: #1E1E2A;
+            border: 1px solid #B42828;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .download-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-card h3 {
+            color: #B42828;
+            margin-bottom: 1rem;
+        }
+
+        .download-card p {
+            color: #AAAAAA;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #B42828;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #DC3C3C;
+        }
+
+        .file-info {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Sürüm Notları */
         .version-changes {
-            text-align: left;
-            max-width: 500px;
-            margin: 2rem auto;
+            margin: 3rem 0;
             padding: 2rem;
             background: rgba(0,0,0,0.2);
             border-radius: 10px;
@@ -120,15 +182,18 @@
         .version-changes h3 {
             color: #B42828;
             margin-bottom: 1rem;
+            font-size: 1.5rem;
             text-align: center;
         }
 
         .version-changes ul {
             list-style: none;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .version-changes li {
-            margin: 0.8rem 0;
+            margin: 1rem 0;
             color: #DDDDDD;
             font-size: 1.1rem;
             padding-left: 1.5rem;
@@ -141,29 +206,27 @@
             left: -5px;
         }
 
-        .download-link {
-            display: inline-block;
-            background: #B42828;
-            color: white;
-            padding: 1.2rem 4rem;
+        /* Sistem Gereksinimleri */
+        .requirements {
+            background: rgba(30, 30, 42, 0.3);
             border-radius: 10px;
-            text-decoration: none;
-            margin-top: 2rem;
-            transition: all 0.3s;
-            font-weight: bold;
-            font-size: 1.3rem;
-            border: 2px solid #B42828;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
-        .download-link:hover {
-            background: transparent;
+        .requirements h3 {
             color: #B42828;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
 
-        .file-info {
-            margin-top: 1rem;
-            color: #666;
-            font-size: 0.9rem;
+        .requirements ul {
+            list-style: none;
+        }
+
+        .requirements li {
+            margin: 0.5rem 0;
+            color: #DDDDDD;
         }
 
         footer {
@@ -193,33 +256,93 @@
         
         <div class="version-card">
             <div class="version-title">v1.0.0</div>
-            <div class="version-date">28 Şubat 2026</div>
+            <div class="version-date">8 Mart 2026</div>
             
+            <!-- İndirme Seçenekleri -->
+            <div class="download-options">
+                <!-- Kurulumlu Versiyon (Önerilen) -->
+                <div class="download-card">
+                    <div class="download-icon">📦</div>
+                    <h3>Kurulumlu Versiyon</h3>
+                    <p>Profesyonel kurulum, başlat menüsü kısayolu, kolay kaldırma</p>
+                    <a href="/Chatter-LiveChat-PC-Sitesi/Chatter-LiveChat-Setup-1.0.0.exe" class="download-btn" onclick="downloadCounter('setup')">
+                        ⬇️ Kurulum İndir (46.2 MB)
+                    </a>
+                    <div class="file-info">Chatter-LiveChat-Setup-1.0.0.exe</div>
+                </div>
+
+                <!-- Taşınabilir Versiyon -->
+                <div class="download-card">
+                    <div class="download-icon">📁</div>
+                    <h3>Taşınabilir Versiyon</h3>
+                    <p>ZIP dosyası, kurulum gerektirmez, USB'den çalıştır</p>
+                    <a href="/Chatter-LiveChat-PC-Sitesi/1.0.0.zip" class="download-btn" onclick="downloadCounter('portable')">
+                        ⬇️ ZIP İndir (63.2 MB)
+                    </a>
+                    <div class="file-info">Chatter-LiveChat-PC-EXELİ.zip</div>
+                </div>
+            </div>
+
+            <!-- Sürüm Notları -->
             <div class="version-changes">
                 <h3>📋 Sürüm Notları</h3>
                 <ul>
-                    <li>Gerçek zamanlı mesajlaşma</li>
-                    <li>Kullanıcı adı kontrolü</li>
-                    <li>Küfür filtresi</li>
-                    <li>Aktif kullanıcı listesi</li>
-                    <li>Yazıyor bildirimi (✏️)</li>
-                    <li>İstatistikler (/stats)</li>
-                    <li>Giriş/Çıkış mesajları</li>
-                    <li>Gece kırmızı tema</li>
-                    <li>Tam ekran modu</li>
+                    <li>⚡ Gerçek zamanlı mesajlaşma</li>
+                    <li>👤 Kullanıcı adı kontrolü</li>
+                    <li>🛡️ Küfür filtresi</li>
+                    <li>👥 Aktif kullanıcı listesi</li>
+                    <li>✏️ Yazıyor bildirimi</li>
+                    <li>📊 İstatistikler (/stats)</li>
+                    <li>🚪 Giriş/Çıkış mesajları</li>
+                    <li>🎨 Gece kırmızı tema</li>
+                    <li>🖥️ Tam ekran modu</li>
                     <li>🎉 İlk kararlı sürüm</li>
                 </ul>
             </div>
-            
-            <a href="/Chatter-LiveChat-PC-Sitesi/Chatter-LiveChat-PC-EXELİ.zip" class="download-link">
-                ⬇️ İndir (63.3 MB)
-            </a>
-            <div class="file-info">Dosya: Chatter-LiveChat-PC-EXELİ.zip</div>
+
+            <!-- Sistem Gereksinimleri -->
+            <div class="requirements">
+                <h3>💻 Sistem Gereksinimleri</h3>
+                <ul>
+                    <li>✔️ Windows 10 / 11 (64-bit)</li>
+                    <li>✔️ 4 GB RAM (önerilen)</li>
+                    <li>✔️ 100 MB boş disk alanı</li>
+                    <li>✔️ .NET Runtime 8.0 (zaten EXE içinde)</li>
+                </ul>
+            </div>
+
+            <!-- Kurulum Talimatları -->
+            <div style="text-align: left; margin-top: 2rem; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 5px;">
+                <h3 style="color: #B42828;">📝 Kurulum Talimatları</h3>
+                <p style="margin: 0.5rem 0;"><strong>Kurulumlu Versiyon:</strong></p>
+                <ol style="margin-left: 2rem;">
+                    <li>Chatter-LiveChat-Setup-1.0.0.exe dosyasını çalıştırın</li>
+                    <li>Lisans sözleşmesini kabul edin</li>
+                    <li>Kurulum dizinini seçin</li>
+                    <li>Kurulum tamamlandıktan sonra programı başlatın</li>
+                </ol>
+                <p style="margin: 0.5rem 0;"><strong>Taşınabilir Versiyon:</strong></p>
+                <ol style="margin-left: 2rem;">
+                    <li>ZIP dosyasını indirin</li>
+                    <li>İstediğiniz klasöre çıkarın</li>
+                    <li>ChatterLiveChat.exe'yi çalıştırın</li>
+                </ol>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>© 2026 Chatter-LiveChat - Tüm hakları saklıdır.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Son güncelleme: 8 Mart 2026</p>
     </footer>
+
+    <script>
+        // İndirme sayacı (opsiyonel)
+        function downloadCounter(type) {
+            console.log(`İndirme başladı: ${type}`);
+            // Google Analytics veya başka bir sayaç ekleyebilirsin
+            return true;
+        }
+    </script>
 </body>
 </html>
